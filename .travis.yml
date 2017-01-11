@@ -6,6 +6,7 @@ services:
 before_install:
   - docker build -t jimexist/sqoop .
   - docker run -d --name sqoop jimexist/sqoop
+  - echo "sleep 7 seconds and wait for container to run" && sleep 10
 
 script:
   - docker run --rm --link sqoop --volume $(pwd):/tmp/test jimexist/sqoop sqoop2-shell /tmp/test/test_script.sqoop
