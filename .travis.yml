@@ -5,6 +5,7 @@ services:
 
 before_install:
   - docker build -t jimexist/sqoop .
+  - docker run -d --name sqoop jimexist/sqoop
 
 script:
-  - echo hello world
+  - docker run --rm --link sqoop --volume $(pwd):/tmp/test jimexist/sqoop sqoop2-shell /tmp/test/test_script.sqoop
