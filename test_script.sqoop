@@ -1,3 +1,2 @@
 set server --host sqoop
 show version --all
-exit
