@@ -1,5 +1,5 @@
 FROM sequenceiq/hadoop-docker:2.7.1
-
+ 
 MAINTAINER Jiayu Liu <etareduce@gmail.com>
 
 ENV SQOOP_HOME=/usr/lib/sqoop
@@ -17,7 +17,7 @@ RUN mkdir -p $SQOOP_HOME \
     && rm /tmp/sqoop-$SQOOP_VERSION-bin-hadoop200.tar.gz \
 
     && mkdir -p /tmp/jdbc \
-    && curl -o /tmp/mysql-connector-java-5.1.40.tar.gz https://dev.mysql.com/get/Downloads/Connector-J/mysql-connector-java-5.1.40.tar.gz \
+    && curl -Lo /tmp/mysql-connector-java-5.1.40.tar.gz https://dev.mysql.com/get/Downloads/Connector-J/mysql-connector-java-5.1.40.tar.gz \
     && tar -xvf /tmp/mysql-connector-java-5.1.40.tar.gz -C /tmp/jdbc \
     && rm /tmp/mysql-connector-java-5.1.40.tar.gz \
     && mv /tmp/jdbc/mysql-connector-java-5.1.40/mysql-connector-java-5.1.40-bin.jar $SQOOP_HOME/server/lib/
