@@ -15,12 +15,11 @@ RUN mkdir -p $SQOOP_HOME \
     && curl -o /tmp/sqoop-$SQOOP_VERSION-bin-hadoop200.tar.gz https://mirrors.tuna.tsinghua.edu.cn/apache/sqoop/$SQOOP_VERSION/sqoop-$SQOOP_VERSION-bin-hadoop200.tar.gz \
     && tar -xvf /tmp/sqoop-$SQOOP_VERSION-bin-hadoop200.tar.gz -C $SQOOP_HOME --strip-components=1 \
     && rm /tmp/sqoop-$SQOOP_VERSION-bin-hadoop200.tar.gz \
-
     && mkdir -p /tmp/jdbc \
     && curl -Lo /tmp/mysql-connector-java-5.1.40.tar.gz https://dev.mysql.com/get/Downloads/Connector-J/mysql-connector-java-5.1.40.tar.gz \
     && tar -xvf /tmp/mysql-connector-java-5.1.40.tar.gz -C /tmp/jdbc \
     && rm /tmp/mysql-connector-java-5.1.40.tar.gz \
-    && mv /tmp/jdbc/mysql-connector-java-5.1.40/mysql-connector-java-5.1.40-bin.jar $SQOOP_HOME/server/lib/
+    && mv /tmp/jdbc/mysql-connector-java-5.1.40/mysql-connector-java-5.1.40-bin.jar $SQOOP_HOME/server/lib/ \
     && rm -rf /tmp/mysql-connector-java-5.1.40/
 
 # override the core-site
