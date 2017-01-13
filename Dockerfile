@@ -21,6 +21,7 @@ RUN mkdir -p $SQOOP_HOME \
     && tar -xvf /tmp/mysql-connector-java-5.1.40.tar.gz -C /tmp/jdbc \
     && rm /tmp/mysql-connector-java-5.1.40.tar.gz \
     && mv /tmp/jdbc/mysql-connector-java-5.1.40/mysql-connector-java-5.1.40-bin.jar $SQOOP_HOME/server/lib/
+    && rm -rf /tmp/jdbc/mysql-connector-java-5.1.40/
 
 # override the core-site
 ADD core-site.xml $HADOOP_HOME/etc/hadoop/core-site.xml
