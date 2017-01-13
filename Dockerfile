@@ -1,5 +1,5 @@
 FROM sequenceiq/hadoop-docker:2.7.1
- 
+
 MAINTAINER Jiayu Liu <etareduce@gmail.com>
 
 ENV SQOOP_HOME=/usr/lib/sqoop
