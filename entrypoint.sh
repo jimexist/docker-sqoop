@@ -1,8 +1,9 @@
 #!/bin/bash
-set -euf -o pipefail
 . /etc/bootstrap.sh
+
+set -euf -o pipefail
 
 echo "starting sqoop2 server"
 sqoop2-server start
 
-tail -f $SQOOP_HOME/@LOGDIR@/sqoop.log
+exec tail -f $SQOOP_HOME/@LOGDIR@/sqoop.log
