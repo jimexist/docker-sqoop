@@ -23,7 +23,8 @@ RUN mkdir -p $SQOOP_HOME \
     && rm -rf /tmp/mysql-connector-java-$MYSQL_JAR_VERSION/
 
 # override the core-site
-ADD core-site.xml $HADOOP_HOME/etc/hadoop/core-site.xml
+
+ADD core-site.xml.template $HADOOP_HOME/etc/hadoop/core-site.xml.template
 ADD sqoop.properties $SQOOP_HOME/conf/
 
 ENV PATH $SQOOP_HOME/bin:$PATH
