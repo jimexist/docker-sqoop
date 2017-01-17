@@ -9,17 +9,18 @@ ENV HADOOP_COMMON_HOME=$HADOOP_HOME/share/hadoop/common
 ENV HADOOP_HDFS_HOME=$HADOOP_HOME/share/hadoop/hdfs
 ENV HADOOP_MAPRED_HOME=$HADOOP_HOME/share/hadoop/mapreduce
 ENV HADOOP_YARN_HOME=$HADOOP_HOME/share/hadoop/yarn
+ENV MYSQL_JAR_VERSION=5.1.40
 
 RUN mkdir -p $SQOOP_HOME \
     && curl -o /tmp/sqoop-$SQOOP_VERSION-bin-hadoop200.tar.gz https://mirrors.tuna.tsinghua.edu.cn/apache/sqoop/$SQOOP_VERSION/sqoop-$SQOOP_VERSION-bin-hadoop200.tar.gz \
     && tar -xvf /tmp/sqoop-$SQOOP_VERSION-bin-hadoop200.tar.gz -C $SQOOP_HOME --strip-components=1 \
     && rm /tmp/sqoop-$SQOOP_VERSION-bin-hadoop200.tar.gz \
     && mkdir -p /tmp/jdbc \
-    && curl -Lo /tmp/mysql-connector-java-5.1.40.tar.gz https://dev.mysql.com/get/Downloads/Connector-J/mysql-connector-java-5.1.40.tar.gz \
-    && tar -xvf /tmp/mysql-connector-java-5.1.40.tar.gz -C /tmp/jdbc \
-    && rm /tmp/mysql-connector-java-5.1.40.tar.gz \
-    && mv /tmp/jdbc/mysql-connector-java-5.1.40/mysql-connector-java-5.1.40-bin.jar $SQOOP_HOME/server/lib/ \
-    && rm -rf /tmp/mysql-connector-java-5.1.40/
+    && curl -Lo /tmp/mysql-connector-java-$MYSQL_JAR_VERSION.tar.gz https://dev.mysql.com/get/Downloads/Connector-J/mysql-connector-java-$MYSQL_JAR_VERSION.tar.gz \
+    && tar -xvf /tmp/mysql-connector-java-$MYSQL_JAR_VERSION.tar.gz -C /tmp/jdbc \
+    && rm /tmp/mysql-connector-java-$MYSQL_JAR_VERSION.tar.gz \
+    && mv /tmp/jdbc/mysql-connector-java-$MYSQL_JAR_VERSION/mysql-connector-java-$MYSQL_JAR_VERSION-bin.jar $SQOOP_HOME/server/lib/ \
+    && rm -rf /tmp/mysql-connector-java-$MYSQL_JAR_VERSION/
 
 # override the core-site
 ADD core-site.xml $HADOOP_HOME/etc/hadoop/core-site.xml
