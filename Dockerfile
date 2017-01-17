@@ -10,7 +10,6 @@ ENV HADOOP_HDFS_HOME=$HADOOP_HOME/share/hadoop/hdfs
 ENV HADOOP_MAPRED_HOME=$HADOOP_HOME/share/hadoop/mapreduce
 ENV HADOOP_YARN_HOME=$HADOOP_HOME/share/hadoop/yarn
 
-# choose a closer mirror
 RUN mkdir -p $SQOOP_HOME \
     && curl -o /tmp/sqoop-$SQOOP_VERSION-bin-hadoop200.tar.gz https://mirrors.tuna.tsinghua.edu.cn/apache/sqoop/$SQOOP_VERSION/sqoop-$SQOOP_VERSION-bin-hadoop200.tar.gz \
     && tar -xvf /tmp/sqoop-$SQOOP_VERSION-bin-hadoop200.tar.gz -C $SQOOP_HOME --strip-components=1 \
@@ -33,6 +32,8 @@ WORKDIR $SQOOP_HOME
 RUN sqoop2-tool upgrade \
     && sqoop2-tool verify
 
-EXPOSE 12000
+ADD entrypoint.sh $SQOOP_HOME/
 
-CMD sqoop2-server start && tail -f $SQOOP_HOME/@LOGDIR@/sqoop.log
+EXPOSE 12000 9000
+
+ENTRYPOINT "./entrypoint.sh"
